@@ -18,5 +18,28 @@
   "bugs": {
     "url": "https://github.com/pd4d10/change-host/issues"
   },
-  "homepage": "https://github.com/pd4d10/change-host#readme"
+  "homepage": "https://github.com/pd4d10/change-host#readme",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-preset-latest": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-register": "^6.16.3"
+  },
+  "ava": {
+    "files": [
+      "test/*.js"
+    ],
+    "source": [
+      "**/*.{js,jsx}",
+      "!dist/**/*"
+    ],
+    "match": [
+      "*"
+    ],
+    "failFast": true,
+    "tap": true,
+    "require": [
+      "babel-register"
+    ]
+  }
 }
