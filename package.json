@@ -1,0 +1,22 @@
+{
+  "name": "change-host",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pd4d10/change-host.git"
+  },
+  "author": "pd4d10 <pd4d10@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pd4d10/change-host/issues"
+  },
+  "homepage": "https://github.com/pd4d10/change-host#readme"
+}
