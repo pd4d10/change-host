@@ -1,5 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Container from './container'
 
-ReactDOM.render(<Container />, document.getElementById('app'))
+const App = () => (
+  <MuiThemeProvider>
+    <Container />
+  </MuiThemeProvider>
+)
+
+ReactDOM.render(<App />, document.getElementById('app'))

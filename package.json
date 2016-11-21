@@ -16,20 +16,27 @@
     "url": "https://github.com/pd4d10/hosts-editor/issues"
   },
   "homepage": "https://github.com/pd4d10/hosts-editor#readme",
+  "dependencies": {
+    "material-ui": "^0.16.4",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.6",
+    "redux": "^3.6.0"
+  },
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.5",
+    "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "css-loader": "^0.25.0",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
-    "eslint-plugin-import": "2",
-    "eslint-plugin-jsx-a11y": "^3.0.1",
-    "eslint-plugin-react": "6",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
     "style-loader": "^0.13.1",
+    "stylelint": "^7.6.0",
     "webpack": "^1.13.2"
   },
   "babel": {
@@ -44,7 +51,19 @@
       "semi": [
         "error",
         "never"
+      ],
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
       ]
+    },
+    "env": {
+      "browser": true
     }
   }
 }

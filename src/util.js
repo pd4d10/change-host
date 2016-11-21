@@ -1,24 +1,18 @@
 /**
  * parse host file
  */
-export const parse = host => {
-  return host.split('\n')
+export const parse = host => host.split('\n')
     .map(x => x.split(/\s+/))
-    .reduce((a, b) => {
-      return Object.assign(a, {
-        [b[1]]: b[0]
-      })
-    }, {})
-}
+    .reduce((a, b) => Object.assign(a, {
+      [b[1]]: b[0],
+    }), {})
 
 /**
  * stringify host file
  */
-export const stringify = json => {
-  return Object.keys(json)
+export const stringify = json => Object.keys(json)
     .map(key => `${json[key]} ${key}`)
     .join('\n')
-}
 
 // let fakeHosts = {
 //   '127.0.0.1': [
@@ -32,14 +26,20 @@ let fakeHosts = [
   {
     ip: '127.0.0.1',
     names: [
-      'www.google.com',
-      'www.facebook.com'
-    ]
+      {
+        name: 'www.google.com',
+        comment: 'google',
+      },
+      {
+        name: 'www.facebook.com',
+        comment: 'facesdf',
+      },
+    ],
   },
   {
     ip: '192.168.0.1',
-    names: ['twitter.com']
-  }
+    names: ['twitter.com'],
+  },
 ]
 
 /**
