@@ -1,1 +1,1 @@
-# change-host
+# hosts-editor
