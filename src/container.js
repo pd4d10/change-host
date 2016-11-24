@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-import { List, ListItem, Dialog, Checkbox } from 'material-ui'
-import { readHosts } from './util'
-import Modal from './Modal'
+import { List, ListItem, Checkbox } from 'material-ui'
+import { readHosts, convert } from './util'
 import './container.css'
 
 export default class Container extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      hosts: [],
+      hosts: {},
       isVisible: false,
       activeKey: -1,
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.onCheck = this.onCheck.bind(this)
   }
 
   componentDidMount() {
@@ -23,28 +22,34 @@ export default class Container extends Component {
     })
   }
 
-  handleClick(index) {
-    return () => this.setState({
-      isVisible: true,
-      activeKey: index,
-    })
+  onCheck(ip, name) {
+    return (event, isChecked) => {
+      this.setState({
+        hosts: Object.assign({}, this.state.hosts, {
+          [ip]: Object.assign({}, this.state.hosts[ip], {
+            [name]: isChecked,
+          }),
+        }),
+      })
+    }
   }
 
   render() {
+    const convertedHosts = convert(this.state.hosts)
     return (
       <div>
-        <List>
-          {this.state.hosts.map(({ ip, names }, index) =>
-            <ListItem key={index}>
+        <ul>
+          {convertedHosts.map(({ ip, hosts }) =>
+            <li key={ip}>
               <span>{ip}</span>
-              <div onClick={this.handleClick(index)}>click</div>
-            </ListItem>,
+              {
+                hosts.map(({ name, active }) => (
+                  <Checkbox label={name} checked={active} onCheck={this.onCheck(ip, name)} />
+                ))
+              }
+            </li>,
             )}
-        </List>
-        <Modal
-          names={this.state.hosts[this.state.activeKey] ? this.state.hosts[this.state.activeKey].names : []}
-          isVisible={this.state.isVisible}
-        />
+        </ul>
       </div>
     )
   }

@@ -14,33 +14,25 @@ export const stringify = json => Object.keys(json)
     .map(key => `${json[key]} ${key}`)
     .join('\n')
 
-// let fakeHosts = {
-//   '127.0.0.1': [
-//     'www.google.com',
-//     'www.facebook.com'
-//   ],
-//   '192.168.0.1': 'twitter.com'
-// }
+let fakeHosts = {
+  '127.0.0.1': {
+    'www.google.com': true,
+    'www.facebook.com': false,
+  },
+  '192.168.0.1': {
+    'twitter.com': true,
+  },
+}
 
-let fakeHosts = [
-  {
-    ip: '127.0.0.1',
-    names: [
-      {
-        name: 'www.google.com',
-        comment: 'google',
-      },
-      {
-        name: 'www.facebook.com',
-        comment: 'facesdf',
-      },
-    ],
-  },
-  {
-    ip: '192.168.0.1',
-    names: ['twitter.com'],
-  },
-]
+export function convert(hostsObject) {
+  return Object.keys(hostsObject).map(ip => ({
+    ip,
+    hosts: Object.keys(hostsObject[ip]).map(name => ({
+      name,
+      active: hostsObject[ip][name],
+    })),
+  }))
+}
 
 /**
  * Read hosts
