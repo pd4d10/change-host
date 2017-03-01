@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { List, ListItem, Checkbox } from 'material-ui'
-import { readHosts, convert } from './util'
+import { readHosts, convert, parse } from './util'
 import './container.css'
 
 export default class Container extends Component {
@@ -8,17 +8,16 @@ export default class Container extends Component {
     super(props)
     this.state = {
       hosts: {},
-      isVisible: false,
-      activeKey: -1,
     }
     this.onCheck = this.onCheck.bind(this)
   }
 
   componentDidMount() {
-    readHosts().then((hosts) => {
-      this.setState({
-        hosts,
-      })
+    readHosts().then((file) => {
+      console.log(file)
+      // this.setState({
+      //   hosts: parse(file),
+      // })
     })
   }
 
@@ -39,16 +38,14 @@ export default class Container extends Component {
     return (
       <div>
         <ul>
-          {convertedHosts.map(({ ip, hosts }) =>
+          {convertedHosts.map(({ ip, hosts }) => (
             <li key={ip}>
               <span>{ip}</span>
-              {
-                hosts.map(({ name, active }) => (
-                  <Checkbox label={name} checked={active} onCheck={this.onCheck(ip, name)} />
-                ))
-              }
-            </li>,
-            )}
+              {hosts.map(({ name, active }) => (
+                <Checkbox label={name} checked={active} onCheck={this.onCheck(ip, name)} />
+              ))}
+            </li>
+          ))}
         </ul>
       </div>
     )

@@ -1,18 +1,29 @@
 /**
  * parse host file
  */
-export const parse = host => host.split('\n')
-    .map(x => x.split(/\s+/))
-    .reduce((a, b) => Object.assign(a, {
-      [b[1]]: b[0],
-    }), {})
+export function parse(file) {
+  return file.split('\n')
+    .map(line => line.trim())
+    .filter(line => line.length) // remove blank line
+    .reduce((obj, line) => {
+      const [ip, ...rest] = line.split(/\s+/)
+      const hosts = rest.join(' ')
+    }, {})
+}
 
 /**
  * stringify host file
  */
-export const stringify = json => Object.keys(json)
-    .map(key => `${json[key]} ${key}`)
+export function stringify(json) {
+  const content = Object.keys(json)
+    .map((ip) => {
+      const obj = json[ip]
+      return Object.keys(obj).reduce((ip, line) => obj[ip] ? line + ip : ip + line, '#')
+    })
     .join('\n')
+
+  return `HOST-MANAGER DO NOT EDIT\n\n${content}`
+}
 
 let fakeHosts = {
   '127.0.0.1': {
@@ -37,8 +48,16 @@ export function convert(hostsObject) {
 /**
  * Read hosts
  */
-export async function readHosts() {
-  return fakeHosts
+export function readHosts() {
+  return new Promise((resolve, reject) => {
+    window.require('fs').readFile('/etc/hosts', (err, data) => {
+      if (err) {
+        return reject(err)
+      }
+
+      return resolve(data.toString())
+    })
+  })
 }
 
 /**
