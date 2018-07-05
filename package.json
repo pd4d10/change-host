@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/pd4d10/hosts-editor#readme",
   "dependencies": {
+    "hosts-util": "^1.0.0",
     "material-ui": "^0.16.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",

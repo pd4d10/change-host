@@ -1992,6 +1992,10 @@ hosted-git-info@^2.1.4:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.1.5.tgz#0ba81d90da2e25ab34a332e6ec77936e1598118b"
 
+hosts-util@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hosts-util/-/hosts-util-1.0.0.tgz#103116374739e76831fc2a7576d699a18f7ca771"
+
 html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"

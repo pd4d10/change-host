@@ -25,23 +25,22 @@ export function stringify(json) {
   return `HOST-MANAGER DO NOT EDIT\n\n${content}`
 }
 
-let fakeHosts = {
-  '127.0.0.1': {
-    'www.google.com': true,
-    'www.facebook.com': false,
-  },
-  '192.168.0.1': {
-    'twitter.com': true,
-  },
-}
+export const fakeHosts = `
+  127.0.0.1 www.google.com www.facebook.com
+  192.168.0.1 twitter.com
+`
 
 export function convert(hostsObject) {
-  return Object.keys(hostsObject).map(ip => ({
-    ip,
-    hosts: Object.keys(hostsObject[ip]).map(name => ({
-      name,
-      active: hostsObject[ip][name],
-    })),
+  // return Object.keys(hostsObject).map(ip => ({
+  //   ip,
+  //   hosts: Object.keys(hostsObject[ip]).map(name => ({
+  //     name,
+  //     active: hostsObject[ip][name],
+  //   })),
+  // }))
+  return Object.keys(hostsObject).map(host => ({
+    host,
+    ip: hostsObject[host],
   }))
 }
 
@@ -65,7 +64,7 @@ export function readHosts() {
  */
 export async function writeHosts(hosts) {
   try {
-    fakeHosts = hosts
+    // fakeHosts = hosts
     return true
   } catch (err) {
     return false
